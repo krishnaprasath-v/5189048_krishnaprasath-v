@@ -4,7 +4,6 @@
 ![linux commands](linux1.png)
 ![linux commands](linux2.png)
 ![c programming](sololearn.jpg)
-![c intermediate](c_intermediate.jpg)
 
 
 
