@@ -1,0 +1,25 @@
+Diagonal difference
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int n, i, j;
+    scanf("%d", &n);
+    int arr[n][n];
+    for(i = 0; i < n; i++) {
+        for(j = 0; j < n; j++) {
+            scanf("%d", &arr[i][j]);
+        }
+    }
+    int sum1 = 0, sum2 = 0;
+    for(i = 0; i < n; i++) {
+        sum1 = sum1 + arr[i][i];
+        sum2 = sum2 + arr[i][n - i - 1];
+    }
+    int diff = sum1 - sum2;
+    if(diff < 0) {
+        diff = -diff;
+    }
+    printf("%d", diff);
+    return 0;
+}

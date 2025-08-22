@@ -1,0 +1,16 @@
+Counting sort
+#include <stdio.h>
+
+int main() {
+    int n, i, x;
+    scanf("%d", &n);
+    int freq[100] = {0};
+    for(i = 0; i < n; i++) {
+        scanf("%d", &x);
+        freq[x]++;
+    }
+    for(i = 0; i < 100; i++) {
+        printf("%d ", freq[i]);
+    }
+    return 0;
+}

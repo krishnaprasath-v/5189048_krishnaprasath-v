@@ -1,0 +1,35 @@
+Ceaser cipher
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+void caesarCipher(char *s, int k) {
+    int i;
+    char c;
+    k = k % 26; // Normalize rotation to within alphabet range
+
+    for (i = 0; s[i] != '\0'; i++) {
+        c = s[i];
+        if (isalpha(c)) {
+            if (islower(c)) {
+                s[i] = ((c - 'a' + k) % 26) + 'a';
+            } else {
+                s[i] = ((c - 'A' + k) % 26) + 'A';
+            }
+        }
+        // Non-alphabetic characters remain unchanged
+    }
+}
+
+int main() {
+    int n, k;
+    scanf("%d", &n);
+    char s[n + 1];
+    scanf("%s", s);
+    scanf("%d", &k);
+
+    caesarCipher(s, k);
+    printf("%s\n", s);
+
+    return 0;
+}

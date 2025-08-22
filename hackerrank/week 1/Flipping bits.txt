@@ -1,0 +1,14 @@
+Flipping bits
+#include <stdio.h>
+
+int main() {
+    int q, i;
+    unsigned int n;
+    scanf("%d", &q);
+    for(i = 0; i < q; i++) {
+        scanf("%u", &n);
+        unsigned int result = ~n;
+        printf("%u\n", result);
+    }
+    return 0;
+}

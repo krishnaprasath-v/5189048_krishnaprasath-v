@@ -1,0 +1,38 @@
+Prime dates
+#include <stdio.h>
+
+int isLeap(int y) {
+    return (y % 400 == 0 || (y % 100 != 0 && y % 4 == 0));
+}
+
+int isLucky(int d, int m, int y) {
+    int num = d * 1000000 + m * 10000 + y;
+    return (num % 4 == 0 || num % 7 == 0);
+}
+
+int findPrimeDates(int d1, int m1, int y1, int d2, int m2, int y2) {
+    int daysInMonth[] = {0,31,28,31,30,31,30,31,31,30,31,30,31};
+    int count = 0;
+    while (y1 < y2 || (y1 == y2 && m1 < m2) || (y1 == y2 && m1 == m2 && d1 <= d2)) {
+        if (isLucky(d1, m1, y1)) count++;
+        d1++;
+        int maxDay = (m1 == 2 && isLeap(y1)) ? 29 : daysInMonth[m1];
+        if (d1 > maxDay) {
+            d1 = 1;
+            m1++;
+            if (m1 > 12) {
+                m1 = 1;
+                y1++;
+            }
+        }
+    }
+    return count;
+}
+
+int main() {
+    int d1, m1, y1, d2, m2, y2;
+    scanf("%2d-%2d-%4d", &d1, &m1, &y1);
+    scanf("%2d-%2d-%4d", &d2, &m2, &y2);
+    printf("%d\n", findPrimeDates(d1, m1, y1, d2, m2, y2));
+    return 0;
+}

@@ -1,0 +1,40 @@
+Min and max sum
+
+
+#include <stdio.h>
+
+int main() {
+    long int arr[5];
+    int i, j;
+    long int sum, minSum, maxSum;
+    for(i = 0; i < 5; i++) {
+        scanf("%ld", &arr[i]);
+    }
+    minSum = 0;
+    maxSum = 0;
+
+    for(i = 0; i < 5; i++) {
+        sum = 0;
+        for(j = 0; j < 5; j++) {
+            if(j != i) {
+                sum = sum + arr[j];
+            }
+        }
+        if(i == 0) {
+            minSum = sum;
+            maxSum = sum;
+        }
+        if(sum < minSum) {
+            minSum = sum;
+        }
+        if(sum > maxSum) {
+            maxSum = sum;
+        }
+    }
+
+    printf("%ld %ld", minSum, maxSum);
+
+    return 0;
+}
+
+

@@ -1,0 +1,57 @@
+DynamicArray
+#include <stdio.h>
+#include <stdlib.h>
+
+int** create2DArray(int n) {
+    int** arr = (int**)malloc(n * sizeof(int*));
+    int i;
+    for (i = 0; i < n; i++) {
+        arr[i] = NULL;
+    }
+    return arr;
+}
+
+int* dynamicArray(int n, int queries[][3], int q, int* resultSize) {
+    int** arr = create2DArray(n);
+    int* sizes = (int*)calloc(n, sizeof(int));
+    int lastAnswer = 0;
+    int* answers = (int*)malloc(q * sizeof(int));
+    int answerCount = 0;
+
+    for (int i = 0; i < q; i++) {
+        int type = queries[i][0];
+        int x = queries[i][1];
+        int y = queries[i][2];
+        int idx = (x ^ lastAnswer) % n;
+
+        if (type == 1) {
+            sizes[idx]++;
+            arr[idx] = (int*)realloc(arr[idx], sizes[idx] * sizeof(int));
+            arr[idx][sizes[idx] - 1] = y;
+        } else if (type == 2) {
+            int value = arr[idx][y % sizes[idx]];
+            lastAnswer = value;
+            answers[answerCount++] = lastAnswer;
+        }
+    }
+
+    *resultSize = answerCount;
+    return answers;
+}
+
+int main() {
+    int n, q;
+    scanf("%d %d", &n, &q);
+    int queries[q][3];
+    for (int i = 0; i < q; i++) {
+        scanf("%d %d %d", &queries[i][0], &queries[i][1], &queries[i][2]);
+    }
+
+    int resultSize;
+    int* result = dynamicArray(n, queries, q, &resultSize);
+    for (int i = 0; i < resultSize; i++) {
+        printf("%d\n", result[i]);
+    }
+
+    return 0;
+}

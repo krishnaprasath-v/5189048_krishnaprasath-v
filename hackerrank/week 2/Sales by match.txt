@@ -1,0 +1,18 @@
+Sales by match
+#include <stdio.h>
+
+int main() {
+    int n, i, color;
+    scanf("%d", &n);
+    int freq[101] = {0};
+    for(i = 0; i < n; i++) {
+        scanf("%d", &color);
+        freq[color]++;
+    }
+    int pairs = 0;
+    for(i = 0; i < 101; i++) {
+        pairs += freq[i] / 2;
+    }
+    printf("%d", pairs);
+    return 0;
+}

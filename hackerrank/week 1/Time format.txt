@@ -1,0 +1,26 @@
+Time format
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char time[11];
+    int hh, mm, ss;
+    char period[3];
+
+    scanf("%s", time);
+
+    sscanf(time, "%d:%d:%d%s", &hh, &mm, &ss, period);
+
+    if(strcmp(period, "AM") == 0) {
+        if(hh == 12) {
+            hh = 0;
+        }
+    } else {
+        if(hh != 12) {
+            hh = hh + 12;
+        }
+    }
+
+    printf("%02d:%02d:%02d", hh, mm, ss);
+    return 0;
+}
